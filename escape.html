@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="fr">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>French Grammar Escape Room</title>
+  <script src="/_sdk/data_sdk.js"></script>
+  <script src="/_sdk/element_sdk.js"></script>
+  <style>@view-transition { navigation: auto;}</style>
+  <script src="https://cdn.tailwindcss.com" type="text/javascript"></script>
+ </head>
+ <body>
+  <div id="app">
+   <div id="welcome" class="screen active welcome-screen">
+    <h1 id="gameTitle">🔐 Escape Room: Grammaire Française</h1>
+    <p id="welcomeMessage">Vous êtes enfermé dans une salle mystérieuse ! Pour vous échapper, vous devez trouver 6 chiffres du code secret en interagissant avec les objets de 5 salles différentes. Chaque objet cache une activité de grammaire française niveau B1. Résolvez les 30 activités et déverrouillez la sortie !</p><input type="text" id="studentName" class="name-input" placeholder="Entrez votre nom" maxlength="50"> <button class="btn" onclick="startGame()">Commencer l'aventure</button>
+   </div>
+   <div id="game" class="screen">
+    <div class="room-container">
+     <div class="room-header">
+      <h2 class="room-title" id="roomTitle">Salle 1: Les Temps</h2>
+      <p class="room-description" id="roomDescription">Explorez la salle et cliquez sur les objets pour découvrir les activités cachées</p>
+      <div class="progress-info">
+       <div class="clues-found" id="cluesFound">
+        Indices: 0/6
+       </div>
+       <div class="timer" id="timer">
+        Temps: 0:00
+       </div>
+      </div>
+     </div>
+     <div class="room-visual">
+      <div class="room-scene" id="roomScene">
+      </div>
+      <div class="code-panel">
+       <div class="code-label">
+        CODE SECRET
+       </div>
+       <div class="code-display" id="codeDisplay">
+        _ _ _ _ _ _
+       </div><button class="btn unlock-btn" id="unlockBtn" onclick="attemptEscape()" style="display:none;">🔓 Déverrouiller la porte</button>
+      </div>
+     </div>
+    </div>
+   </div>
+   <div id="activityModal" class="modal-overlay">
+    <div class="modal-content"><button class="modal-close" onclick="closeModal()">×</button>
+     <h3 class="activity-title" id="activityTitle">Activité</h3>
+     <div id="activityContainer"></div><button class="btn submit-btn" id="submitBtn" onclick="submitAnswer()">Valider</button>
+    </div>
+   </div>
+   <div id="completion" class="screen completion-screen">
+    <h2 id="successMessage">🎉 Félicitations ! Vous vous êtes échappé !</h2>
+    <div class="score-display">
+     Score: <span id="finalScore">0</span>/30
+    </div>
+    <div>
+     <p>Temps total: <span id="finalTime">0:00</span></p>
+    </div>
+    <div class="leaderboard">
+     <h3>🏆 Tableau des scores</h3>
+     <div id="leaderboardList"></div>
+    </div><button class="btn" onclick="resetGame()">Rejouer</button>
+   </div>
+   <div id="toast" class="toast"></div>
+  </div>
+  </body>
+</html>
